@@ -6,12 +6,16 @@
   color:black;
 }
 a {
-text-decoration:none;
-color:black;
+    text-decoration: none;
+      color: #333;
+      transition: color 0.3s ease;
+      font-size: 1.0rem;
+      display: block;
+      margin: 10px 0;
 }
 .hover { display: none; }
 .static:hover .hover {
-    display: inline;
+    display: none;
 }
 .ebooks {
 margin-top:2%;
@@ -51,5 +55,30 @@ body {
 <a class="static"  href="./mazerunner/"><h2><span class="hover">📖</span>Maze Runner</h2></a>
 </div>
 </center>
+
+  <script>
+    // Utility function to generate random hex color
+    function getRandomColor() {
+      let color;
+      do {
+        color = "#" + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+      } while (color === "#000000" || color === "#ffffff"); // exclude black and white
+      return color;
+    }
+
+    // Apply hover event to all links
+    const links = document.querySelectorAll("a");
+
+    links.forEach(link => {
+      link.addEventListener("mouseenter", () => {
+        const randomColor = getRandomColor();
+        link.style.color = randomColor;
+      });
+
+      link.addEventListener("mouseleave", () => {
+        link.style.color = "#333"; // revert to default
+      });
+    });
+  </script>
 </body>
 </html>
